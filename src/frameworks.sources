@@ -985,7 +985,8 @@ IAD_SOURCES = \
 
 # ImageCaptureKit
 IMAGECAPTURECORE_API_SOURCES = \
-	ImageCaptureCore/Defs.cs
+	ImageCaptureCore/Defs.cs \
+	ImageCaptureCore/ICCameraDevice.cs \
 
 # ImageIO
 

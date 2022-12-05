@@ -560,12 +560,15 @@ namespace ImageCaptureCore {
 		[Export ("cancelDownload")]
 		void CancelDownload ();
 
+		// delegate void DidSendDataFromFile (NSData command, NSData inData, NSData response, NSError error);
 		[Export ("requestUploadFile:options:uploadDelegate:didUploadSelector:contextInfo:")]
 		void RequestUploadFile (NSUrl fileUrl, NSDictionary<NSString, NSObject> options, NSObject uploadDelegate, Selector didUploadSelector, [NullAllowed] IntPtr contextInfo);
 
+		// delegate void DidSendDataFromFile (NSData command, NSData inData, NSData response, NSError error);
 		[Export ("requestReadDataFromFile:atOffset:length:readDelegate:didReadDataSelector:contextInfo:")]
 		void RequestReadDataFromFile (ICCameraFile file, long offset, long length, NSObject readDelegate, Selector didReadDataSelector, [NullAllowed] IntPtr contextInfo);
 
+		// delegate void DidSendPtpCommand (NSData command, NSData inData, NSData response, NSError error);
 		[Export ("requestSendPTPCommand:outData:sendCommandDelegate:didSendCommandSelector:contextInfo:")]
 		void RequestSendPtpCommand (NSData command, NSData outData, NSObject sendCommandDelegate, Selector didSendCommandSelector, [NullAllowed] IntPtr contextInfo);
 	}
