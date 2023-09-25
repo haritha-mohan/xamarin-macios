@@ -23,12 +23,10 @@ using AVFoundation;
 #if NET
 using Vector2 = global::System.Numerics.Vector2;
 using Vector3 = global::System.Numerics.Vector3;
-using Vector4 = global::System.Numerics.Vector4;
 using Matrix3 = global::CoreGraphics.NMatrix3;
 #else
 using Vector2 = global::OpenTK.Vector2;
 using Vector3 = global::OpenTK.Vector3;
-using Vector4 = global::OpenTK.Vector4;
 using Matrix3 = global::OpenTK.NMatrix3;
 #endif
 
@@ -64,7 +62,9 @@ namespace Vision {
 		TimeStampNotFound,
 		UnsupportedRequest,
 		Timeout,
+		[TV(17, 0), Mac(14, 0), iOS(17, 0), MacCatalyst(17, 0)]
 		UnsupportedComputeStage,
+		[TV(17, 0), Mac(14, 0), iOS(17, 0), MacCatalyst(17, 0)]
 		UnsupportedComputeDevice,
 	}
 
@@ -2169,6 +2169,7 @@ namespace Vision {
 
 	[MacCatalyst (13, 1)]
 	[BaseType (typeof (VNRectangleObservation))]
+	[DisableDefaultCtor]
 	interface VNBarcodeObservation {
 
 		[Protected]
