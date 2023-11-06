@@ -59,7 +59,7 @@ namespace MonoTouchFixtures.Vision
 			Assert.That (1, Is.EqualTo(request.Results.Length), "there is more than 1 result present..");
 
 			var recognizedPoints = observation.GetRecognizedPoints (VNHumanBodyPose3DObservationJointsGroupName.Head, out NSError error22);
-			Assert.
+			// Assert.
 			Assert.NotNull (recognizedPoints, "RecognizedPoints should not return null.");
 			Assert.Null(error22, $"Recognized points should not return an error {error22}");
 
@@ -73,13 +73,15 @@ namespace MonoTouchFixtures.Vision
 			VNHumanBodyPose3DObservationJointName.CenterHead,
 			VNHumanBodyPose3DObservationJointName.TopHead, };
 
-			foreach (var i in jointNames) {
-				var position = observation.GetCameraRelativePosition (out Vector4 modelPositionOut, i, out NSError error2);
-				Assert.NotNull(modelPositionOut, "GetCameraRelativePosition should not return null.");
-				Assert.False (position, "GetCameraRelativePosition should return false, but actually it was able to identify something!");
-				Assert.That (modelPositionOut, Is.EqualTo(Vector4.Zero), "VNVector3DGetCameraRelativePosition is not empty!");
-			}
-			
+			// foreach (var i in jointNames) {
+			// var vec = new Vector4 ();
+			var position = observation.GetCameraRelativePosition (out var vec, VNHumanBodyPose3DObservationJointName.CenterHead, out NSError error2);
+			Assert.NotNull(vec, "GetCameraRelativePosition should not return null.");
+			Assert.Null(error2, $"should not return an error {error2}");
+			Assert.True (position, $"GetCameraRelativePosition should return false, but actually it was able to identify something for");
+			Assert.That (vec, Is.EqualTo(Vector4.Zero), "VNVector3DGetCameraRelativePosition is not empty!");
+			// }
+
 			// var position = observation.GetCameraRelativePosition(out Vector4 modelPositionOut, VNHumanBodyPose3DObservationJointName.CenterHead, out NSError error2);
 			// Assert.NotNull(modelPositionOut, "GetCameraRelativePosition should not return null.");
 			// Assert.True (position, "GetCameraRelativePosition should return true.");

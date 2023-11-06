@@ -4506,7 +4506,7 @@ namespace Vision {
 		NSString GetParentJointName ([BindAs (typeof (VNHumanBodyPose3DObservationJointName))] NSString jointName);
 
 		[Export ("getCameraRelativePosition:forJointName:error:")]
-		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
+		// MarshalDirective not needed bc Vector4 param is passed by reference as opposed to by value as typically done
 		bool GetCameraRelativePosition (out Vector4 modelPositionOut, [BindAs (typeof (VNHumanBodyPose3DObservationJointName))] NSString jointName, [NullAllowed] out NSError error);
 	}
 
