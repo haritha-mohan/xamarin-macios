@@ -24,10 +24,12 @@ using AVFoundation;
 using Vector2 = global::System.Numerics.Vector2;
 using Vector3 = global::System.Numerics.Vector3;
 using Matrix3 = global::CoreGraphics.NMatrix3;
+using Matrix4 = global::CoreGraphics.NMatrix4;
 #else
 using Vector2 = global::OpenTK.Vector2;
 using Vector3 = global::OpenTK.Vector3;
 using Matrix3 = global::OpenTK.NMatrix3;
+using Matrix4 = global::OpenTK.NMatrix4;
 #endif
 
 #if !NET
@@ -4378,10 +4380,10 @@ namespace Vision {
 		[Export ("initWithPosition:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		[DesignatedInitializer]
-		NativeHandle Constructor (Vector4 position);
+		NativeHandle Constructor (Matrix4 position);
 
 		[Export ("position")]
-		Vector4 Position {
+		Matrix4 Position {
 			[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 			get;
 		}
@@ -4394,7 +4396,7 @@ namespace Vision {
 		[Export ("initWithPosition:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		[DesignatedInitializer]
-		NativeHandle Constructor (Vector4 position);
+		NativeHandle Constructor (Matrix4 position);
 
 		[Export ("identifier")]
 		string Identifier { get; }
@@ -4429,10 +4431,10 @@ namespace Vision {
 		[Export ("initWithPosition:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		[DesignatedInitializer]
-		NativeHandle Constructor (Vector4 position);
+		NativeHandle Constructor (Matrix4 position);
 
 		[Export ("localPosition")]
-		Vector4 LocalPosition {
+		Matrix4 LocalPosition {
 			[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 			get;
 		}
@@ -4472,7 +4474,7 @@ namespace Vision {
 		VNHumanBodyPose3DObservationHeightEstimation HeightEstimation { get; }
 
 		[Export ("cameraOriginMatrix")]
-		Vector4 CameraOriginMatrix {
+		Matrix4 CameraOriginMatrix {
 			[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 			get;
 		}
@@ -4506,8 +4508,8 @@ namespace Vision {
 		NSString GetParentJointName ([BindAs (typeof (VNHumanBodyPose3DObservationJointName))] NSString jointName);
 
 		[Export ("getCameraRelativePosition:forJointName:error:")]
-		// MarshalDirective not needed bc Vector4 param is passed by reference as opposed to by value as typically done
-		bool GetCameraRelativePosition (out Vector4 modelPositionOut, [BindAs (typeof (VNHumanBodyPose3DObservationJointName))] NSString jointName, [NullAllowed] out NSError error);
+		// MarshalDirective not needed bc Matrix4 param is passed by reference as opposed to by value as typically done
+		bool GetCameraRelativePosition (out Matrix4 modelPositionOut, [BindAs (typeof (VNHumanBodyPose3DObservationJointName))] NSString jointName, [NullAllowed] out NSError error);
 	}
 
 	[TV (17, 0), Mac (14, 0), iOS (17, 0), MacCatalyst (17, 0)]
