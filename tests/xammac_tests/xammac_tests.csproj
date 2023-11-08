@@ -213,15 +213,6 @@
     <Content Include="..\monotouch-test\Resources\square.gif">
       <Link>Resources\square.gif</Link>
     </Content>
-    <Content Include="..\monotouch-test\Resources\portrait.png">
-      <Link>Resources\portrait.png</Link>
-    </Content>
-     <Content Include="..\monotouch-test\Resources\portrait.heic">
-      <Link>Resources\portrait.heic</Link>
-    </Content>
-    <Content Include="..\monotouch-test\Resources\full_body.png">
-      <Link>Resources\full_body.png</Link>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Metal Include="..\monotouch-test\Resources\metal-sample.metal">
