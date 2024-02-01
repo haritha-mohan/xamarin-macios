@@ -1211,6 +1211,9 @@ dotnet-gen:: dotnet-gen-$(3)
 $($(2)_DOTNET_BUILD_DIR)/ILLink.LinkAttributes.xml: $(TOP)/src/ILLink.LinkAttributes.xml.in | $($(2)_DOTNET_BUILD_DIR)
 	$$(call Q_PROF_GEN,$(3)) sed < $$< > $$@ 's|@PRODUCT_NAME@|Microsoft.$(1)|g;'
 
+$($(2)_DOTNET_BUILD_DIR)/SourceLink.json: $($(2)_DOTNET_BUILD_DIR)
+	$$(Q) $(TOP)/src/generate-sourcelink-json.csharp "$(PACKAGE_HEAD_REV)" "$(TOP)/src" "$$@"
+
 $($(2)_DOTNET_BUILD_DIR)/ILLink.Substitutions.xml: $(TOP)/src/ILLink.Substitutions.$(1).xml | $($(2)_DOTNET_BUILD_DIR)
 	$(Q) $(CP) $$< $$@
 
@@ -1246,6 +1249,7 @@ endif
 $(2)_DOTNET_PLATFORM_ASSEMBLY_DEPENDENCIES = \
 	$($(2)_DOTNET_SOURCES) \
 	$($(2)_DOTNET_BUILD_DIR)/$(3)-generated-sources \
+	$($(2)_DOTNET_BUILD_DIR)/SourceLink.json \
 	$($(2)_DOTNET_BUILD_DIR)/ILLink.LinkAttributes.xml \
 	$($(2)_DOTNET_BUILD_DIR)/ILLink.Substitutions.xml \
 	$(PRODUCT_KEY_PATH) \
@@ -1264,6 +1268,7 @@ $($(2)_DOTNET_BUILD_DIR)/$(4)/Microsoft.$(1)%dll $($(2)_DOTNET_BUILD_DIR)/$(4)/M
 		-publicsign -keyfile:$(PRODUCT_KEY_PATH) \
 		$$($(2)_$(4)_REFOUT_ARG) \
 		$$($(2)_$(4)_DOC_ARG) \
+		-sourcelink:$($(2)_DOTNET_BUILD_DIR)/SourceLink.json \
 		$$($(2)_DEFINES) \
 		$(ARGS_$(4)) \
 		$$(DOTNET_WARNINGS_TO_FIX) \
