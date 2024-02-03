@@ -1212,7 +1212,7 @@ $($(2)_DOTNET_BUILD_DIR)/ILLink.LinkAttributes.xml: $(TOP)/src/ILLink.LinkAttrib
 	$$(call Q_PROF_GEN,$(3)) sed < $$< > $$@ 's|@PRODUCT_NAME@|Microsoft.$(1)|g;'
 
 $($(2)_DOTNET_BUILD_DIR)/SourceLink.json: $($(2)_DOTNET_BUILD_DIR)
-	$$(Q) $(TOP)/src/generate-sourcelink-json.csharp "$(PACKAGE_HEAD_REV)" "$(dir $(abspath $(firstword $(MAKEFILE_LIST))))" "$$@"
+	$$(Q) $(TOP)/src/generate-sourcelink-json.csharp "$(PACKAGE_HEAD_REV)" "$(dir $(abspath $(firstword $(MAKEFILE_LIST))))" "$$@" >/dev/null 2>&1
 
 $($(2)_DOTNET_BUILD_DIR)/ILLink.Substitutions.xml: $(TOP)/src/ILLink.Substitutions.$(1).xml | $($(2)_DOTNET_BUILD_DIR)
 	$(Q) $(CP) $$< $$@
@@ -1264,7 +1264,7 @@ $($(2)_DOTNET_BUILD_DIR)/$(4)/Microsoft.$(1)%dll $($(2)_DOTNET_BUILD_DIR)/$(4)/M
 		$(DOTNET_FLAGS) \
 		-unsafe \
 		-optimize \
-		-embed:src/build/*
+		-embed:build/dotnet/macos/generated-sources/WebKit/WKWindowFeatures.g.cs \
 		$$(ARGS_$(1)) \
 		-publicsign -keyfile:$(PRODUCT_KEY_PATH) \
 		$$($(2)_$(4)_REFOUT_ARG) \
