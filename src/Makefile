@@ -1264,7 +1264,7 @@ $($(2)_DOTNET_BUILD_DIR)/$(4)/Microsoft.$(1)%dll $($(2)_DOTNET_BUILD_DIR)/$(4)/M
 		$(DOTNET_FLAGS) \
 		-unsafe \
 		-optimize \
-		-embed:build/dotnet/macos/generated-sources/WebKit/WKWindowFeatures.g.cs \
+		-embed:$(shell $(TOP)/tools/get-generated-src.sh $(DIRECTORY_PATH)) \
 		$$(ARGS_$(1)) \
 		-publicsign -keyfile:$(PRODUCT_KEY_PATH) \
 		$$($(2)_$(4)_REFOUT_ARG) \
