@@ -13,7 +13,7 @@ var json    = new StringBuilder ();
 json.AppendLine ("{");
 json.AppendLine ("  \"documents\": {");
 
-json.AppendLine ($"    \"{src}*\": \"https://raw.githubusercontent.com/xamarin/xamarin-macios/{latestCommit}/src/*\"");
+json.AppendLine ($"    \"{src}(?!build/)*\": \"https://raw.githubusercontent.com/xamarin/xamarin-macios/{latestCommit}/src/*\"");
 json.AppendLine ("  }");
 json.AppendLine ("}");
 

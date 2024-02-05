@@ -1264,12 +1264,12 @@ $($(2)_DOTNET_BUILD_DIR)/$(4)/Microsoft.$(1)%dll $($(2)_DOTNET_BUILD_DIR)/$(4)/M
 		$(DOTNET_FLAGS) \
 		-unsafe \
 		-optimize \
-		-embed:$(shell $(TOP)/tools/get-generated-src.sh $(DIRECTORY_PATH)) \
 		$$(ARGS_$(1)) \
 		-publicsign -keyfile:$(PRODUCT_KEY_PATH) \
 		$$($(2)_$(4)_REFOUT_ARG) \
 		$$($(2)_$(4)_DOC_ARG) \
 		-sourcelink:$($(2)_DOTNET_BUILD_DIR)/SourceLink.json \
+		-embed:$(TOP)/tools/get-generated-src.sh $(realpath ./$($(2)_DOTNET_BUILD_DIR)/generated-sources) \
 		$$($(2)_DEFINES) \
 		$(ARGS_$(4)) \
 		$$(DOTNET_WARNINGS_TO_FIX) \
