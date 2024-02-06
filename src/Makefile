@@ -1269,7 +1269,7 @@ $($(2)_DOTNET_BUILD_DIR)/$(4)/Microsoft.$(1)%dll $($(2)_DOTNET_BUILD_DIR)/$(4)/M
 		$$($(2)_$(4)_REFOUT_ARG) \
 		$$($(2)_$(4)_DOC_ARG) \
 		-sourcelink:$($(2)_DOTNET_BUILD_DIR)/SourceLink.json \
-		-embed:$(shell ls -R $($(2)_DOTNET_BUILD_DIR) | grep '\.g\.cs$$' | tr '\n' ';') \
+		-embed:$(shell ./get-generated-src.sh $($(2)_DOTNET_BUILD_DIR)) \
 		$$($(2)_DEFINES) \
 		$(ARGS_$(4)) \
 		$$(DOTNET_WARNINGS_TO_FIX) \
