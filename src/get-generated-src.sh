@@ -2,11 +2,18 @@
 
 directory_path="$1"
 
-# # Use find's -exec to print full paths directly
-FILES=$(find $(realpath "$directory_path") -type f -name "*.g.cs")
+# FILES=$(find $(realpath "$directory_path/generated-sources") -type f -name "*.g.cs")
 
-# # Join file names with semicolons
-RESULT=$(echo "$FILES" | tr '\n' ';')
+# # RESULT=$(echo $FILES | tr '\n' ';')
+# result_variable=""
 
-# echo "Result: $RESULT"
-echo $RESULT
+# # Iterate through each file in FILES and append to the result_variable
+# for file in $FILES; do
+#   result_variable="$result_variable$file;"
+# done
+
+# echo $result_variable
+
+FILES=$(find "$(realpath "$directory_path/generated-sources")" -type f -name "*.g.cs" -exec printf "%s;" {} +)
+FILES=${FILES%;}
+echo $FILES
