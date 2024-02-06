@@ -1269,7 +1269,7 @@ $($(2)_DOTNET_BUILD_DIR)/$(4)/Microsoft.$(1)%dll $($(2)_DOTNET_BUILD_DIR)/$(4)/M
 		$$($(2)_$(4)_REFOUT_ARG) \
 		$$($(2)_$(4)_DOC_ARG) \
 		-sourcelink:$($(2)_DOTNET_BUILD_DIR)/SourceLink.json \
-		-embed:$(shell ./get-generated-src.sh $($(2)_DOTNET_BUILD_DIR)) \
+		-embed:build/dotnet/macos/generated-sources/StoreKit/SKArcadeService.g.cs \
 		$$($(2)_DEFINES) \
 		$(ARGS_$(4)) \
 		$$(DOTNET_WARNINGS_TO_FIX) \
