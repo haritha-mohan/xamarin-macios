@@ -2169,6 +2169,7 @@
 		<_MlaunchPath Condition="'$(_MlaunchPath)' == ''">$(MlaunchPath)</_MlaunchPath>
 		<!-- this is the path to mlaunch relative to the root of the .NET installation -->
 		<_RelativeMlaunchPath Condition="'$(_RelativeMlaunchPath)' == ''">$(_XamarinRelativeSdkRootDirectory)tools\bin\mlaunch</_RelativeMlaunchPath>
+		<XcsyncPath Condition="'$(XcsyncPath)' == ''">$(_XamarinSdkRootDirectory)tools\bin\xcsync</XcsyncPath>
 	</PropertyGroup>
 
 	<Target Name="ComputeMlaunchInstallArguments" DependsOnTargets="_DetectSdkLocations;_GenerateBundleName;_DetectAppManifest;_ComputeMlaunchInstallArguments" />
